@@ -4,35 +4,32 @@ import java.time.LocalDate;
 import java.time.Period;
 
 public class Video extends Midia {
-	String url;
 	int duracao;
 	int curtidas;
 	String descricao;
 
-	public Video(String tipo, String autor, LocalDate data, String titulo, 
-			String descricao, int duracao, String url, int curtidas) {
-		super();
-		this.tipo = tipo;
-		this.autor = autor;
-		this.data = data;
-		this.titulo = titulo;
-		this.descricao = descricao;
-		this.url = url;
+	
+
+	public Video(String tipo, String autor, String data, String titulo, String url, int duracao, int curtidas,
+			String descricao) {
+		super(tipo, autor, data, titulo, url);
+		this.duracao = duracao;
 		this.curtidas = curtidas;
 		this.descricao = descricao;
 	}
 
+
 	public String publicadoA() {
 		LocalDate hoje = LocalDate.now();
-		Period publicado = Period.between(hoje, this.data);
+		Period publicado = Period.between(this.data, hoje);
 		String anos, meses, dias;
 
 		// verificação dos anos
 		if (publicado.getYears() > 1) {
-			anos = "" + publicado.getYears() + " anos ";
+			anos = "" + publicado.getYears() + " anos";
 		} else {
 			if (publicado.getYears() == 1) {
-				anos = "" + publicado.getYears() + " ano ";
+				anos = "" + publicado.getYears() + " ano";
 			} else {
 				anos = "";
 			}
@@ -57,6 +54,15 @@ public class Video extends Midia {
 				dias = "";
 			}
 		}
-		return "publicado a" + anos + meses + dias;
+		return "Publicado a " + anos + (anos != ""?", ":"") + meses + (meses != "" || dias != ""?"e ":"") + dias;
 	}
+
+
+	@Override
+	public String toString() {
+		return "Video [ " + super.toString() + ", Duração=" + duracao + "(seg), Curtidas=" + curtidas + ", Descricao=" + descricao
+				+ ", " + publicadoA() + " ]";
+	}
+	
+	
 }
