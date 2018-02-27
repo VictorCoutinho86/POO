@@ -40,7 +40,7 @@ class Midia {
 	}
 
 	public String toString() {
-		return "Autor=" + autor + ", Titulo=" + titulo + ", Url=" + url;
+		return "\nAutor=" + autor + "\nTitulo=" + titulo + "\nUrl=" + url;
 	}
 
 }
@@ -98,8 +98,8 @@ class Video extends Midia {
 	}
 	
 	public String toString() {
-		return "Video [ " + super.toString() + ", Duração=" + duracao + "(seg), Curtidas=" + curtidas + ", Descricao=" + descricao
-				+ ", " + publicadoA() + " ]";
+		return "Tipo=Video" + super.toString() + "\nDuração=" + duracao + "(seg)\nCurtidas=" + curtidas + "\nDescricao=" + descricao
+				+ "\n" + publicadoA() + "\n";
 	}
 }
 
@@ -115,7 +115,9 @@ class Ebook extends Midia {
 	}
 
 	public String toString() {
-		return "Ebook [ " + super.toString() + ", Páginas=" + paginas + " ]";
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		
+		return "Tipo=Ebook" + super.toString() + "\nPáginas=" + paginas + "\nData="+ this.data.format(formatter) + "\n";
 	}
 }
 
@@ -124,21 +126,18 @@ public class Principal {
 
 	public static void main(String[] args) {
 		
-		Video video = new Video("Video", "Carlos Bazilio", "22/08/2017", "Por que ainda estudar Java", 
+		Midia midia[] = new Midia[3];
+		
+		midia[0] = new Video("Video", "Carlos Bazilio", "22/08/2017", "Por que ainda estudar Java?"
+				+ "", 
 				"https://www.youtube.com/watch?v=bdpSqjTZJcg", 998, 11, 
 				"Razões para ainda se estudar a linguagem Java");
 		
-		Ebook book1 = new Ebook("Ebook", "Carlos Bazilio", 
+		midia[1] = new Ebook("Ebook", "Carlos Bazilio", 
 				"23/09/2017", "Programando na Cozinha", "https://carlosbazilio.gitbooks.io/programando-na-cozinha/content/pt-br/", 57);
 		
-		Ebook book2 = new Ebook("Ebook", "Marijn Haverbeke", "06/03/2017", 
+		midia[2] = new Ebook("Ebook", "Marijn Haverbeke", "06/03/2017", 
 				"Eloquent JavaScript", "http://eloquentjavascript.net/3rd_edition/", 472);
-		
-		Midia midia[] = new Midia[3];
-		
-		midia[0] = video;
-		midia[1] = book1;
-		midia[2] = book2;
 		
 		for (Midia mid : midia) {
 			System.out.println(mid.toString());
