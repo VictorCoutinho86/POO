@@ -98,7 +98,7 @@ class Video extends Midia {
 	}
 	
 	public String toString() {
-		return "Tipo=Video" + super.toString() + "\nDuração=" + duracao + "(seg)\nCurtidas=" + curtidas + "\nDescricao=" + descricao
+		return "Tipo=Vídeo" + super.toString() + "\nDuração=" + duracao + "(seg)\nCurtidas=" + curtidas + "\nDescrição=" + descricao
 				+ "\n" + publicadoA() + "\n";
 	}
 }
